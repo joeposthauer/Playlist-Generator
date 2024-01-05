@@ -1,5 +1,24 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+
+from . import credentials
+
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 
 def index(request):
-    return render(request, "landing.html")
+    
+    # Create a SpotifyOAuth object
+    sp_oauth = SpotifyOAuth(client_id=credentials.client_ID, client_secret=credentials.client_SECRET, redirect_uri=credentials.redirect_URI, scope = credentials.scope)
+
+    # Print the sp_oauth object to the console
+    print("\n\nSP_OAuth Object:" ,sp_oauth, "\n\n")
+
+    # Redirect the user to the Spotify login page
+    # Get the authorization URL
+    url = sp_oauth.get_authorize_url()
+    # Print the authorization url to the console
+    print(url)
+
+    # Redirect the user to the Spotify login page
+    return HttpResponseRedirect(url)

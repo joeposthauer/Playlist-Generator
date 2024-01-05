@@ -117,15 +117,3 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Spotify Stuff
-
-SOCIAL_AUTH_SPOTIFY_KEY = 'eb135b77a46b4ea1888a268eedb8880a'
-SOCIAL_AUTH_SPOTIFY_SECRET = '27a275c9e3bd4ffa9782f972ed0b3ccf'
-
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GooglePlusAuth',
-    'social_core.backends.deezer.DeezerOAuth2',
-    'social_core.backends.spotify.SpotifyOAuth2',
-)
-
-SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email', 'user-library-read']
