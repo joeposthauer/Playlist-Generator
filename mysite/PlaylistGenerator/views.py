@@ -6,6 +6,8 @@ from . import credentials
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 
+
+# View for when a user enters site- needs to authenticate
 def index(request):
     
     # Create a SpotifyOAuth object
@@ -22,3 +24,7 @@ def index(request):
 
     # Redirect the user to the Spotify login page
     return HttpResponseRedirect(url)
+
+# View for when a user authenticates- choosing parameters
+def parameters(request):
+    pass
