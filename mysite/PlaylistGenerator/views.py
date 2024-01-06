@@ -27,4 +27,4 @@ def index(request):
 
 # View for when a user authenticates- choosing parameters
 def parameters(request):
-    pass
+    return HttpResponse("hello")
