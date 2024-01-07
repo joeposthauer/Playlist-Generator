@@ -29,6 +29,12 @@ def index(request):
     # Redirect the user to the Spotify login page
     return render(request, "landing.html", args)
 
+
+# View for reauthentication after redirect
+def callback(request):
+    pass
+
+
 # View for when a user authenticates- choosing parameters
 def parameters(request):
     return HttpResponse("hello")
