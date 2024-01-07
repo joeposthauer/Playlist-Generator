@@ -5,7 +5,6 @@ from . import credentials
 
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
-#this is a random change
 
 # View for when a user enters site- needs to authenticate
 def index(request):
