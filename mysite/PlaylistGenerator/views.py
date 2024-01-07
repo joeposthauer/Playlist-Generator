@@ -66,4 +66,7 @@ def parameters(request):
 
     return render(request, "parameters.html", args)
 
-    
+# View for calculating parameters for playlist
+def calculate(request):
+    args = {}
+    return render(request, "calculate.html", args)
