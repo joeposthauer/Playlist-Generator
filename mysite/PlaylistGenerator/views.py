@@ -75,7 +75,7 @@ def parameters(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            url = reverse("/calculate/", args={'data': form})
+            url = reverse("/calculate/", form={'data': form})
             return HttpResponseRedirect(url)
 
     # if a GET (or any other method) we'll create a blank form
@@ -86,9 +86,9 @@ def parameters(request):
     return render(request, "parameters.html", args)
 
 # View for calculating parameters for playlist
-def calculate(request):
+def calculate(request, *args):
 
-    args = {}
-    return render(request, "calculate.html", args)
+    print(args)
+    return render(request, "calculate.html")
 
 
