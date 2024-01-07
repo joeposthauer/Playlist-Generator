@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.urls import reverse
 
 from . import credentials
+from .forms import ParamsForm
 
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
@@ -64,9 +66,29 @@ def parameters(request):
     else:
         print("The access token is invalid or has expired.\n\n")
 
+    # if this is a POST request we need to process the form data
+    if request.method == "POST":
+        # create a form instance and populate it with data from the request:
+        form = ParamsForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            url = reverse("/calculate/", args={'data': form})
+            return HttpResponseRedirect(url)
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ParamsForm()
+
+    args['form'] = form
     return render(request, "parameters.html", args)
 
 # View for calculating parameters for playlist
 def calculate(request):
+
     args = {}
     return render(request, "calculate.html", args)
+
+
