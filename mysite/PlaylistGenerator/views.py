@@ -7,7 +7,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth, SpotifyClientCredentials
 
 # View for when a user enters site- needs to authenticate
-def index(request):
+def landing(request):
     args = {}
     # Create a SpotifyOAuth object
     sp_oauth = SpotifyOAuth(client_id=credentials.client_ID, client_secret=credentials.client_SECRET, redirect_uri=credentials.redirect_URI, scope = credentials.scope)
@@ -52,7 +52,17 @@ def callback(request):
 
 # View for when a user authenticates- choosing parameters
 def parameters(request):
-    print('\n\n ACCESS TOKEN: ', request.session.get("access_token", '\n\n'))
+
+    token = request.session.get("access_token")
+
+    sp = spotipy.Spotify(auth=token)
+
+    response = sp.me()
+
+    if response is not None:
+        print("The access token is valid.\n\n")
+    else:
+        print("The access token is invalid or has expired.\n\n")
 
     return HttpResponse("hello")
 
