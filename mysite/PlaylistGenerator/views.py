@@ -52,6 +52,7 @@ def callback(request):
 
 # View for when a user authenticates- choosing parameters
 def parameters(request):
+    args = {}
 
     token = request.session.get("access_token")
 
@@ -63,6 +64,6 @@ def parameters(request):
     else:
         print("The access token is invalid or has expired.\n\n")
 
-    return HttpResponse("hello")
+    return render(request, "parameters.html", args)
 
     
