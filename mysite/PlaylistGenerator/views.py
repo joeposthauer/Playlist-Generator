@@ -58,7 +58,6 @@ def parameters(request):
     sp = spotipy.Spotify(auth=token)
 
     response = sp.me()
-
     if response is not None:
         print("The access token is valid.\n\n")
     else:
