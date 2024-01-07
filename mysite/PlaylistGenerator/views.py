@@ -52,4 +52,8 @@ def callback(request):
 
 # View for when a user authenticates- choosing parameters
 def parameters(request):
+    print('\n\n ACCESS TOKEN: ', request.session.get("access_token", '\n\n'))
+
     return HttpResponse("hello")
+
+    
